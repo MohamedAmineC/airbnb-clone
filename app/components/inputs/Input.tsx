@@ -10,7 +10,7 @@ interface InputProps{
     formatPrice?: boolean,
     required?: boolean,
     register: UseFormRegister<FieldValues>
-    errors?: FieldErrors
+    errors: FieldErrors
 }
 
 const Input:React.FC<InputProps> = ({id,label,type = "text",disabled,formatPrice,register,required,errors}) => {
