@@ -1,6 +1,7 @@
 "use client"
 import axios from "axios"
-import {AiFillGithub,AiFillFacebook} from "react-icons/ai"
+import {AiFillGithub} from "react-icons/ai"
+import {FaFacebookSquare} from "react-icons/fa"
 import {FcGoogle} from "react-icons/fc"
 import { useCallback,useState } from "react"
 import {FieldValues,SubmitHandler,useForm} from "react-hook-form"
@@ -95,7 +96,7 @@ const RegisterModal = () => {
         <Button 
         outline
         label="Continue with Facebbok"
-        icon={AiFillFacebook}
+        icon={FaFacebookSquare}
         onClick={() => {}}
         />
         <div className="text-neutral-500 mt-4 font-light">
