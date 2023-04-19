@@ -4,8 +4,10 @@ import Avatar from "../Avatar"
 import {TfiWorld} from "react-icons/tfi"
 import { useCallback, useState } from "react"
 import MenuItem from "./MenuItem"
+import useRegisterModal from "@/app/hooks/useRegisterModal"
 const UserMenu = () => {
     const [isOpen,setIsOpen] = useState<Boolean>(false);
+    const registerModal = useRegisterModal();
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value)
@@ -32,10 +34,14 @@ const UserMenu = () => {
        {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
             <div className="flex flex-col cursor-pointer">
-                <>
+                <div className="border-b-[1px] border-gray-300 py-2">
                     <MenuItem onClick={() => {}} label="login" />
-                    <MenuItem onClick={() => {}} label="Sign up" />
-                </>
+                    <MenuItem onClick={registerModal.onOpen} label="Sign up" />
+                </div>
+                <div className="py-2">
+                    <MenuItem onClick={() => {}} label="Put My rental on Airbnb" />
+                    <MenuItem onClick={() => {}} label="Help" />
+                </div>
             </div>
         </div>
        )}
