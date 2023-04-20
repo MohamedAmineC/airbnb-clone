@@ -85,19 +85,19 @@ const LoginModal = () => {
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => signIn('google')}
         />
         <Button 
         outline
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn('github')}
         />
         <Button 
         outline
         label="Continue with Facebbok"
         icon={FaFacebookSquare}
-        onClick={() => {}}
+        onClick={() => signIn('facebook')}
         />
         <div className="text-neutral-500 mt-4 font-light">
             <div className="flex items-center justify-center gap-4">
