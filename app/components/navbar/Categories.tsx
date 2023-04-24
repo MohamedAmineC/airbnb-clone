@@ -10,7 +10,7 @@ import {BsSnow} from "react-icons/bs"
 import CategoryBox from "../CategoryBox"
 import { usePathname, useSearchParams } from "next/navigation"
 import { FaSkiing } from "react-icons/fa"
-interface Category {
+export interface Category {
     label: string,
     icon: IconType,
     description?: string
