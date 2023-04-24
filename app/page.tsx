@@ -1,12 +1,38 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import ClientOnly from './components/ClientOnly'
+import Container from './components/container'
+import EmptyState from './components/EmptyState'
+import getListings from './actions/getListings'
+import ListingCard from './components/listings/ListingCard'
+import { getCurrentUser } from './actions/getCurrentUser'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default async function Home() {
+  const currentUser = await getCurrentUser();
+  const listings = await getListings();
+
+  if(listings.length === 0){
+    return (
+      <ClientOnly>
+        <EmptyState showReset />
+      </ClientOnly>
+    )
+  }
   return (
-    <div>
-      <h1 className='text-zinc-400 text-3xl'>My airbnb clone</h1>
-    </div>
+    <ClientOnly>
+      <Container>
+        <div className='pt-24 grid grid-cols-1 sm:grid-cols-2 md: grid-clos-3 lg:gird-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8'>
+          {listings.map(listing => (
+            <ListingCard 
+            key={listing.id}
+            data={listing}
+            currentUser={currentUser}
+            />
+          ))}
+        </div>
+      </Container>
+    </ClientOnly>
   )
 }
