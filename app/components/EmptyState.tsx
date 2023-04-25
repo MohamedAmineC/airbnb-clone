@@ -9,12 +9,14 @@ interface EmptyStateProps{
     title?: string,
     subTitle?: string,
     showReset?: boolean,
+    errorReset?: boolean
 }
 
 const EmptyState:React.FC<EmptyStateProps> = ({
     title = "No exact matches",
     subTitle = "Try changing or removing some of your filters",
-    showReset
+    showReset,
+    errorReset
 }) => {
     const router = useRouter();
 
@@ -33,6 +35,15 @@ const EmptyState:React.FC<EmptyStateProps> = ({
             onClick={() => router.push('/')}
             />
         )}
+        {
+          errorReset && (
+            <Button 
+            outline
+            label='Try again maybe ?'
+            onClick={() => router.refresh()}
+            />
+          )
+        }
        </div>
     </div>
   )
