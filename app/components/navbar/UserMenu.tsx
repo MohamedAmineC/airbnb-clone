@@ -2,7 +2,7 @@
 import {AiOutlineMenu} from "react-icons/ai"
 import Avatar from "../Avatar"
 import {TfiWorld} from "react-icons/tfi"
-import { useCallback, useState } from "react"
+import { useCallback, useState,useRef,useEffect } from "react"
 import MenuItem from "./MenuItem"
 import useRegisterModal from "@/app/hooks/useRegisterModal"
 import useLoginModal from "@/app/hooks/useLoginModal"
@@ -16,6 +16,7 @@ interface UserMenuProps{
 }
 const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
     const [isOpen,setIsOpen] = useState<Boolean>(false);
+    const menuRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
@@ -33,8 +34,23 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
         //OPEN RENT MODAL
         rentModal.onOpen();
     },[currentUser,loginModal,rentModal])
+
+    const handleClickOutside = useCallback((event: MouseEvent) => {
+        if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+            setIsOpen(false);
+        }
+    }, []);
+
+    // add event listener on mount
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [handleClickOutside]);
+
   return (
-    <div className='relative'>
+    <div className='relative' ref={menuRef}>
        <div className='flex items-center gap-3'>
             <div className='hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer'
             onClick={onRent}>
