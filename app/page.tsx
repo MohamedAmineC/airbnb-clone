@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import ClientOnly from './components/ClientOnly'

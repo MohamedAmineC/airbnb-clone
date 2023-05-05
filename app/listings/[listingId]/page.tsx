@@ -5,9 +5,18 @@ import EmptyState from '@/app/components/EmptyState';
 import React from 'react'
 import ListingClient from './ListingClient';
 import getReservations from '@/app/actions/getReservations';
+import { Metadata } from 'next';
 
 interface Iparams{
     listingId?: string
+}
+
+export async function generateMetadata({ params }:{params:Iparams}): Promise<Metadata> {
+  const listing = await getListingById(params);
+  return { 
+    title: listing?.title,
+    description: listing?.description 
+  }
 }
 
 const ListingPage = async  ({params}:{params:Iparams}) => {

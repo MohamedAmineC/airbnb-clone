@@ -56,7 +56,7 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
             onClick={onRent}>
                 Airbnb your home
             </div>
-            <div className="font-semibold rounded-full p-2 hover:bg-neutral-100 transition cursor-pointer">
+            <div className="font-semibold rounded-full p-2 hover:bg-neutral-100 transition cursor-pointer hidden sm:block">
                 <TfiWorld />
             </div>
             <div className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
